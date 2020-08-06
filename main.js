@@ -39,6 +39,7 @@ class WidgetsProcessor {
         ]
         this.widgets = {}
         this.widgetsBufferCoef = 0.1
+        this.heightBufferMultiplier = 2.5
         this.initX = widgets[0].x
         this.initY = widgets[0].y
         this.maxX = widgets[0].x
@@ -113,7 +114,7 @@ class WidgetsProcessor {
             .sort((a, b) => { return a.value.length > b.value.length ? -1 : 1 })
 
         // calc position and create widgets
-        let heightAcum = this.initY + this.selectionHeight * 2
+        let heightAcum = this.initY + this.selectionHeight * this.heightBufferMultiplier
         let prevColor = null
         sortedClass.forEach((cls) => {
             let widthAcum = this.initX
