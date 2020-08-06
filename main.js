@@ -81,12 +81,14 @@ class WidgetsProcessor {
         console.log(widgetClass)
 
         Object.entries(widgetClass).forEach(([key, value]) => {
-            // just add the constant for now
-            const newX = value.x + 50
-            const newY = value.y + 50
-            miro.board.widgets.update({
-                id: value.id, 
-                x: newX, y: newY
+            value.forEach((v) => {
+                // just add the constant for now
+                const newX = v.x + 50
+                const newY = v.y + 50
+                miro.board.widgets.update({
+                    id: v.id, 
+                    x: newX, y: newY
+                })
             })
         })
     }
