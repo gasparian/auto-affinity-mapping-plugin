@@ -56,6 +56,20 @@ class WidgetsProcessor {
         })
         this.selectionWidth = this.maxX - this.initX
         this.selectionHeight = this.maxY - this.initY
+        this.basicColors = [
+            '#f5f6f8',
+            '#fff9b1', // Default color
+            '#f5d128',
+            '#d0e17a',
+            '#d5f692',
+            '#a6ccf5',
+            '#67c6c0',
+            '#23bfe7',
+            '#ff9d48',
+            '#ea94bb',
+            '#f16c7f',
+            '#b384bb',
+        ]
     }
 
     process() {
@@ -87,6 +101,11 @@ class WidgetsProcessor {
         return widthAcum + w + w * this.widgetsBufferCoef
     }
 
+    getRandomColor() {
+        const idx = Math.floor(Math.random() * this.basicColors.length)
+        return this.basicColors[idx]
+    }
+
     updateWidgetsPos(widgetClass) {
         // descending sort by cluster length
         const sortedClass = Object.keys(widgetClass)
@@ -101,7 +120,7 @@ class WidgetsProcessor {
         sortedClass.forEach((cls) => {
             let widthAcum = this.initX
             let maxHeightRow = 0
-            // const clusterColor = 
+            const clusterColor = getRandomColor()
             cls.value.forEach((v) => {
                 // smth similar to pagination, inside a cluster
                 if ( widthAcum > (this.maxX + this.widgets[v].width / 2) ) {
@@ -119,7 +138,7 @@ class WidgetsProcessor {
                     id: v, x: widthAcum, y: heightAcum, 
                     scale: this.widgets[v].scale,
                     style:{
-                        stickerBackgroundColor: '#7ac673' // clusterColor
+                        stickerBackgroundColor: clusterColor
                     }
                 })
                 widthAcum = this.increaseWidth(widthAcum, w)
