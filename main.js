@@ -112,9 +112,6 @@ class WidgetsProcessor {
             .map((k) => { return { key: k, value: widgetClass[k] } })
             .sort((a, b) => { return a.value.length > b.value.length ? -1 : 1 })
 
-        // debug
-        // console.log(sortedClass)
-
         // calc position and create widgets
         let heightAcum = this.initY + this.selectionHeight * 2
         let prevColor = null
@@ -127,10 +124,7 @@ class WidgetsProcessor {
             }
             prevColor = clusterColor
             cls.value.forEach((v) => {
-                // smth similar to pagination, inside a cluster
-                
-                console.log(widthAcum, this.maxX, this.widgets[v].width)
-
+                // smth similar to pagination inside a cluster
                 if ( widthAcum > (this.maxX + this.widgets[v].width / 2) ) {
                     widthAcum = this.initX
                     heightAcum = this.increaseHeight(heightAcum, maxHeightRow)
