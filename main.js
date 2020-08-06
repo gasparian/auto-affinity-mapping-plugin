@@ -21,6 +21,7 @@ miro.onReady(() => {
 
 class WidgetsProcessor {
     constructor(widgets) {
+        // To do: drop redundunt data?
         this.apiUrl = `https://d6a4f3bd8a8d.ngrok.io/get_clusters`
         this.widgets = {}
         this.widgetsBufferCoef = 0.1
@@ -79,13 +80,15 @@ class WidgetsProcessor {
     }
 
     updateWidgetsPos(widgetClass) {
+        // descending sort by cluster length
         const sortedClass = Object.keys(widgetClass)
             .map((k) => { return { key: k, value: widgetClass[k] } })
             .sort((a, b) => { return a.value.length > b.value.length ? -1 : 1 })
 
         // debug
-        console.log(sortedClass)
+        // console.log(sortedClass)
 
+        // calc position and create widgets
         let heightAcum = this.initY + this.selectionHeight * 2
         sortedClass.forEach((cls) => {
             let widthAcum = this.initX
