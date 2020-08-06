@@ -79,8 +79,8 @@ class WidgetsProcessor {
 
     updateWidgetsPos(widgetClass) {
         const sortedClass = Object.keys(widgetClass)
-            .map(function(k) { return { key: k, value: widgetClass[k] }; })
-            .sort(function(a, b) { return b.value.length - a.value.length; });
+            .map((k) => { return { key: k, value: widgetClass[k] }; })
+            .sort((a, b) => { return a.value.length > b.value.length ? -1 : 1; });
 
         // debug
         console.log(sortedClass)
