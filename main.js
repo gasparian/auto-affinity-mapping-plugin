@@ -25,7 +25,6 @@ class WidgetsProcessor {
 
         // To do: drop redundunt data?
         this.basicColors = [
-            '#f5f6f8',
             '#fff9b1', // Default color
             '#f5d128',
             '#d0e17a',
@@ -129,6 +128,9 @@ class WidgetsProcessor {
             prevColor = clusterColor
             cls.value.forEach((v) => {
                 // smth similar to pagination, inside a cluster
+
+                console.log(widthAcum, (this.maxX + this.widgets[v].width / 2))
+                
                 if ( widthAcum > (this.maxX + this.widgets[v].width / 2) ) {
                     widthAcum = this.initX
                     heightAcum = this.increaseHeight(heightAcum, maxHeightRow)
