@@ -21,7 +21,7 @@ miro.onReady(() => {
 
 class WidgetsProcessor {
     constructor(widgets) {
-        this.apiUrl = `https://edc276e15779.ngrok.io/get_clusters`
+        this.apiUrl = `https://d6a4f3bd8a8d.ngrok.io/get_clusters`
         this.widgets = {}
         this.initX = widgets[0].x
         this.initY = widgets[0].y
@@ -79,8 +79,8 @@ class WidgetsProcessor {
 
     updateWidgetsPos(widgetClass) {
         const sortedClass = Object.keys(widgetClass)
-            .map((k) => { return { key: k, value: widgetClass[k] }; })
-            .sort((a, b) => { return a.value.length > b.value.length ? -1 : 1; });
+            .map((k) => { return { key: k, value: widgetClass[k] } })
+            .sort((a, b) => { return a.value.length > b.value.length ? -1 : 1 })
 
         // debug
         console.log(sortedClass)
