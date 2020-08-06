@@ -88,7 +88,7 @@ class WidgetsProcessor {
 
         let heightAcum = this.initY + this.selectionHeight * 1.2
         sortedClass.forEach((cls) => {
-            let widthAcum = 0
+            let widthAcum = this.initX
             let maxHeightRow = 0
             cls.value.forEach((v) => {
                 const w = this.widgets[v].width
@@ -96,13 +96,11 @@ class WidgetsProcessor {
                 if (h > maxHeightRow) {
                     maxHeightRow = h
                 }
-                // debug: just add the constant for now
-                const newX = this.widgets[v].x + widthAcum
-                const newY = this.widgets[v].y + heightAcum
                 // copy widgets to another place of the current board
                 miro.board.widgets.create({
                     type: 'sticker', text: this.widgets[v].plainText,
-                    id: v, x: newX, y: newY, scale: this.widgets[v].scale
+                    id: v, x: widthAcum, y: heightAcum, 
+                    scale: this.widgets[v].scale
                 })
                 widthAcum += w + w * this.widgetsBufferCoef
             })
