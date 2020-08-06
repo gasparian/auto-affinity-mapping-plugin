@@ -66,7 +66,7 @@ class WidgetsProcessor {
         let resp = await fetch(this.apiUrl, {
             method: "POST",
             cache: 'no-cache',
-            credentials: "include",
+            // credentials: "include",
             mode: 'no-cors',
             headers: {
                 'Content-Type': 'application/json'
