@@ -24,7 +24,7 @@ class WidgetsProcessor {
         this.apiUrl = `https://edc276e15779.ngrok.io/get_clusters`
         this.widgets = []
         this.initX = widgets[0].x
-        this.initY = widgets[0].x
+        this.initY = widgets[0].y
         this.maxX = 0
         this.maxY = 0
         widgets.forEach(w => {  
@@ -43,7 +43,9 @@ class WidgetsProcessor {
             this.widgets.push({
                 "id": w.id, 
                 "plainText": w.plainText, 
-                "bounds": w.bounds
+                "x": w.x, "y": w.y,
+                "width": w.bounds.width,
+                "height": w.bounds.height,
             })
         })
         this.selectionWidth = this.maxX - this.initX
