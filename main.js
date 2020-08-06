@@ -40,8 +40,7 @@ class WidgetsProcessor {
             if (w.y > this.maxY) {
                 this.maxY = w.y
             }
-            this.widgets["id"] = {
-                "id": w.id, 
+            this.widgets[w.id] = {
                 "plainText": w.plainText, 
                 "x": w.x, "y": w.y,
                 "width": w.bounds.width,
@@ -86,8 +85,7 @@ class WidgetsProcessor {
                 const newX = this.widgets[v].x + 50
                 const newY = this.widgets[v].y + 50
                 miro.board.widgets.update({
-                    id: this.widgets[v].id, 
-                    x: newX, y: newY
+                    id: v, x: newX, y: newY
                 })
             })
         })
