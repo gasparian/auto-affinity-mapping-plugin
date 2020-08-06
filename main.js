@@ -21,6 +21,7 @@ miro.onReady(() => {
 
 class WidgetsProcessor {
     constructor(widgets) {
+        this.apiUrl = `https://edc276e15779.ngrok.io/get_clusters`
         this.widgets = []
         this.initX = widgets[0].x
         this.initY = widgets[0].x
@@ -36,7 +37,7 @@ class WidgetsProcessor {
             if (w.x > this.maxX) {
                 this.maxX = w.x
             }
-            if (w.y < this.maxY) {
+            if (w.y > this.maxY) {
                 this.maxY = w.y
             }
             this.widgets.push({
@@ -59,8 +60,7 @@ class WidgetsProcessor {
     }
 
     async getWidgetClass() {
-        const url = `https://37ad4b7d6ef1.ngrok.io/get_clusters`
-        let resp = await fetch(url, {
+        let resp = await fetch(this.apiUrl, {
             method: "POST",
             cache: 'no-cache',
             credentials: "include",
