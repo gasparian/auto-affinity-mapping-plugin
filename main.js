@@ -92,7 +92,7 @@ class WidgetsProcessor {
                 // copy widgets to another place of the current board
                 miro.board.widgets.create({
                     type:'sticker', text: this.widgets[v].plainText,
-                    id: v, x: newX, y: newY, scale: this.widgets[v]
+                    id: v, x: newX, y: newY, scale: this.widgets[v].scale
                 })
             })
         })
