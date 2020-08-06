@@ -79,6 +79,14 @@ class WidgetsProcessor {
         return resp.text()
     }
 
+    increaseHeight(heightAcum, maxHeightRow) {
+        return heightAcum + maxHeightRow + maxHeightRow * this.widgetsBufferCoef
+    }
+    
+    increaseWidth(widthAcum, w) {
+        return widthAcum + w + w * this.widgetsBufferCoef
+    }
+
     updateWidgetsPos(widgetClass) {
         // descending sort by cluster length
         const sortedClass = Object.keys(widgetClass)
@@ -93,7 +101,13 @@ class WidgetsProcessor {
         sortedClass.forEach((cls) => {
             let widthAcum = this.initX
             let maxHeightRow = 0
+            // const clusterColor = 
             cls.value.forEach((v) => {
+                // smth similar to pagination, inside a cluster
+                if ( widthAcum > (this.maxX + this.widgets[v].width / 2) ) {
+                    widthAcum = this.initX
+                    heightAcum = increaseHeight(heightAcum, maxHeightRow)
+                }
                 const w = this.widgets[v].width
                 const h = this.widgets[v].height
                 if (h > maxHeightRow) {
@@ -103,11 +117,15 @@ class WidgetsProcessor {
                 miro.board.widgets.create({
                     type: 'sticker', text: this.widgets[v].plainText,
                     id: v, x: widthAcum, y: heightAcum, 
-                    scale: this.widgets[v].scale
+                    scale: this.widgets[v].scale,
+                    style:{
+                        stickerBackgroundColor: '#7ac673' // clusterColor
+                    }
                 })
-                widthAcum += w + w * this.widgetsBufferCoef
+                widthAcum = increaseWidth(widthAcum, w)
             })
-            heightAcum += maxHeightRow + maxHeightRow * this.widgetsBufferCoef
+            heightAcum = increaseHeight(heightAcum, maxHeightRow)
         })
     }
 }
+
