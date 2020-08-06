@@ -75,7 +75,7 @@ class WidgetsProcessor {
 
     updateWidgetsPos(widgetClass) {
         Object.keys(widgetClass)
-            .map(function(k) { return { key: k, value: languages[k] }; })
+            .map(function(k) { return { key: k, value: widgetClass[k] }; })
             .sort(function(a, b) { return b.value.length - a.value.length; });
 
         console.log(widgetClass)
