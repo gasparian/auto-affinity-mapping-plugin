@@ -86,7 +86,7 @@ class WidgetsProcessor {
         // debug
         console.log(sortedClass)
 
-        let heightAcum = this.initY + this.selectionHeight * 1.2
+        let heightAcum = this.initY + this.selectionHeight * 2
         sortedClass.forEach((cls) => {
             let widthAcum = this.initX
             let maxHeightRow = 0
