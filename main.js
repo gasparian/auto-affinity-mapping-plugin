@@ -21,8 +21,23 @@ miro.onReady(() => {
 
 class WidgetsProcessor {
     constructor(widgets) {
-        // To do: drop redundunt data?
         this.apiUrl = `https://d6a4f3bd8a8d.ngrok.io/get_clusters`
+
+        // To do: drop redundunt data?
+        this.basicColors = [
+            '#f5f6f8',
+            '#fff9b1', // Default color
+            '#f5d128',
+            '#d0e17a',
+            '#d5f692',
+            '#a6ccf5',
+            '#67c6c0',
+            '#23bfe7',
+            '#ff9d48',
+            '#ea94bb',
+            '#f16c7f',
+            '#b384bb',
+        ]
         this.widgets = {}
         this.widgetsBufferCoef = 0.1
         this.initX = widgets[0].x
@@ -56,20 +71,6 @@ class WidgetsProcessor {
         })
         this.selectionWidth = this.maxX - this.initX
         this.selectionHeight = this.maxY - this.initY
-        this.basicColors = [
-            '#f5f6f8',
-            '#fff9b1', // Default color
-            '#f5d128',
-            '#d0e17a',
-            '#d5f692',
-            '#a6ccf5',
-            '#67c6c0',
-            '#23bfe7',
-            '#ff9d48',
-            '#ea94bb',
-            '#f16c7f',
-            '#b384bb',
-        ]
     }
 
     process() {
