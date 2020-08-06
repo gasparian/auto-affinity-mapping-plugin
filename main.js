@@ -78,15 +78,15 @@ class WidgetsProcessor {
     }
 
     updateWidgetsPos(widgetClass) {
-        widgetClass = Object.keys(widgetClass)
+        const sortedClass = Object.keys(widgetClass)
             .map(function(k) { return { key: k, value: widgetClass[k] }; })
             .sort(function(a, b) { return b.value.length - a.value.length; });
 
         // debug
-        console.log(widgetClass)
+        console.log(sortedClass)
 
-        Object.entries(widgetClass).forEach(([key, value]) => {
-            value.forEach((v) => {
+        sortedClass.forEach((cls) => {
+            cls.value.forEach((v) => {
                 // debug: just add the constant for now
                 const newX = this.widgets[v].x + 50
                 const newY = this.widgets[v].y + 50
