@@ -123,7 +123,7 @@ class WidgetsProcessor {
             let widthAcum = this.initX
             let maxHeightRow = 0
             let clusterColor = this.getRandomColor()
-            while (clusterColor != prevColor) {
+            while (clusterColor == prevColor) {
                 clusterColor = this.getRandomColor()
             }
             prevColor = clusterColor
