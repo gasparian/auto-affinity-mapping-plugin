@@ -23,6 +23,7 @@ class WidgetsProcessor {
     constructor(widgets) {
         this.apiUrl = `https://d6a4f3bd8a8d.ngrok.io/get_clusters`
         this.widgets = {}
+        this.widgetsBufferCoef = 0.1
         this.initX = widgets[0].x
         this.initY = widgets[0].y
         this.maxX = 0
@@ -85,17 +86,27 @@ class WidgetsProcessor {
         // debug
         console.log(sortedClass)
 
+        let heightAcum = this.initY + this.selectionHeight * 1.2
         sortedClass.forEach((cls) => {
+            let widthAcum = 0
+            let maxHeightRow = 0
             cls.value.forEach((v) => {
+                const w = this.widgets[v].width
+                const h = this.widgets[v].height
+                if (h > maxHeightRow) {
+                    maxHeightRow = h
+                }
                 // debug: just add the constant for now
-                const newX = this.widgets[v].x + 50
-                const newY = this.widgets[v].y + 50
+                const newX = this.widgets[v].x + widthAcum
+                const newY = this.widgets[v].y + heightAcum
                 // copy widgets to another place of the current board
                 miro.board.widgets.create({
                     type: 'sticker', text: this.widgets[v].plainText,
                     id: v, x: newX, y: newY, scale: this.widgets[v].scale
                 })
+                widthAcum += w + w * this.widgetsBufferCoef
             })
+            heightAcum += maxHeightRow + maxHeightRow * this.widgetsBufferCoef
         })
     }
 }
