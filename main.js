@@ -22,7 +22,7 @@ miro.onReady(() => {
 class WidgetsProcessor {
     constructor(widgets) {
         this.apiUrl = `https://edc276e15779.ngrok.io/get_clusters`
-        this.widgets = []
+        this.widgets = {}
         this.initX = widgets[0].x
         this.initY = widgets[0].y
         this.maxX = 0
@@ -40,13 +40,13 @@ class WidgetsProcessor {
             if (w.y > this.maxY) {
                 this.maxY = w.y
             }
-            this.widgets.push({
+            this.widgets["id"] = {
                 "id": w.id, 
                 "plainText": w.plainText, 
                 "x": w.x, "y": w.y,
                 "width": w.bounds.width,
                 "height": w.bounds.height,
-            })
+            }
         })
         this.selectionWidth = this.maxX - this.initX
         this.selectionHeight = this.maxY - this.initY
@@ -68,7 +68,7 @@ class WidgetsProcessor {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(this.widgets)  
+            body: JSON.stringify(this.widgets)
         })
         return resp.text()
     }
@@ -83,10 +83,10 @@ class WidgetsProcessor {
         Object.entries(widgetClass).forEach(([key, value]) => {
             value.forEach((v) => {
                 // just add the constant for now
-                const newX = v.x + 50
-                const newY = v.y + 50
+                const newX = this.widgets[v].x + 50
+                const newY = this.widgets[v].y + 50
                 miro.board.widgets.update({
-                    id: v.id, 
+                    id: this.widgets[v].id, 
                     x: newX, y: newY
                 })
             })
