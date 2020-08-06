@@ -41,8 +41,8 @@ class WidgetsProcessor {
         this.widgetsBufferCoef = 0.1
         this.initX = widgets[0].x
         this.initY = widgets[0].y
-        this.maxX = 0
-        this.maxY = 0
+        this.maxX = widgets[0].x
+        this.maxY = widgets[0].y
         this.widgetMeanWidth = 0
         this.widgetMeanHeight = 0
         widgets.forEach(w => {  
