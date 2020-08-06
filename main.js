@@ -49,6 +49,7 @@ class WidgetsProcessor {
                 "x": w.x, "y": w.y,
                 "width": w.bounds.width,
                 "height": w.bounds.height,
+                "scale": w.scale
             }
         })
         this.selectionWidth = this.maxX - this.initX
@@ -91,7 +92,7 @@ class WidgetsProcessor {
                 const newY = this.widgets[v].y + 50
                 // copy widgets to another place of the current board
                 miro.board.widgets.create({
-                    type:'sticker', text: this.widgets[v].plainText,
+                    type: 'sticker', text: this.widgets[v].plainText,
                     id: v, x: newX, y: newY, scale: this.widgets[v].scale
                 })
             })
