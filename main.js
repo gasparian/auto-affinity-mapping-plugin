@@ -118,10 +118,15 @@ class WidgetsProcessor {
 
         // calc position and create widgets
         let heightAcum = this.initY + this.selectionHeight * 2
+        let prevColor = null
         sortedClass.forEach((cls) => {
             let widthAcum = this.initX
             let maxHeightRow = 0
-            const clusterColor = this.getRandomColor()
+            let clusterColor = this.getRandomColor()
+            while (clusterColor != prevColor) {
+                clusterColor = this.getRandomColor()
+            }
+            prevColor = clusterColor
             cls.value.forEach((v) => {
                 // smth similar to pagination, inside a cluster
                 if ( widthAcum > (this.maxX + this.widgets[v].width / 2) ) {
