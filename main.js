@@ -106,7 +106,7 @@ class WidgetsProcessor {
                 // smth similar to pagination, inside a cluster
                 if ( widthAcum > (this.maxX + this.widgets[v].width / 2) ) {
                     widthAcum = this.initX
-                    heightAcum = increaseHeight(heightAcum, maxHeightRow)
+                    heightAcum = this.increaseHeight(heightAcum, maxHeightRow)
                 }
                 const w = this.widgets[v].width
                 const h = this.widgets[v].height
@@ -122,9 +122,9 @@ class WidgetsProcessor {
                         stickerBackgroundColor: '#7ac673' // clusterColor
                     }
                 })
-                widthAcum = increaseWidth(widthAcum, w)
+                widthAcum = this.increaseWidth(widthAcum, w)
             })
-            heightAcum = increaseHeight(heightAcum, maxHeightRow)
+            heightAcum = this.increaseHeight(heightAcum, maxHeightRow)
         })
     }
 }
