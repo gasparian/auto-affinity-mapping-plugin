@@ -55,6 +55,7 @@ class WidgetsProcessor {
     process() {
         this.getWidgetClass().then((result) => {
             const data = result ? JSON.parse(result) : {}
+            console.log(data)
             if (Object.keys(data).length) {
                 this.updateWidgetsPos(data)
             }
