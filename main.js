@@ -27,6 +27,8 @@ class WidgetsProcessor {
         this.initY = widgets[0].y
         this.maxX = 0
         this.maxY = 0
+        this.widgetMeanWidth = 0
+        this.widgetMeanHeight = 0
         widgets.forEach(w => {  
             if (w.x < this.initX) {
                 this.initX = w.x
@@ -40,6 +42,8 @@ class WidgetsProcessor {
             if (w.y > this.maxY) {
                 this.maxY = w.y
             }
+            this.widgetMeanWidth += w.bounds.width / widgets.length
+            this.widgetMeanHeight += w.bounds.height / widgets.length
             this.widgets[w.id] = {
                 "plainText": w.plainText, 
                 "x": w.x, "y": w.y,
@@ -77,15 +81,18 @@ class WidgetsProcessor {
             .map(function(k) { return { key: k, value: widgetClass[k] }; })
             .sort(function(a, b) { return b.value.length - a.value.length; });
 
+        // debug
         console.log(widgetClass)
 
         Object.entries(widgetClass).forEach(([key, value]) => {
             value.forEach((v) => {
-                // just add the constant for now
+                // debug: just add the constant for now
                 const newX = this.widgets[v].x + 50
                 const newY = this.widgets[v].y + 50
-                miro.board.widgets.update({
-                    id: v, x: newX, y: newY
+                // copy widgets to another place of the current board
+                miro.board.widgets.create({
+                    type:'sticker', text: this.widgets[v].plainText,
+                    id: v, x: newX, y: newY, scale: this.widgets[v]
                 })
             })
         })
