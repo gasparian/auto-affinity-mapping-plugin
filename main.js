@@ -55,7 +55,6 @@ class WidgetsProcessor {
     process() {
         this.getWidgetClass().then((result) => {
             const data = result ? JSON.parse(result) : {}
-            console.log(result, data)
             if (Object.keys(data).length) {
                 this.updateWidgetsPos(data)
             }
@@ -66,7 +65,6 @@ class WidgetsProcessor {
         let resp = await fetch(this.apiUrl, {
             method: "POST",
             cache: 'no-cache',
-            mode: 'no-cors',
             headers: {
                 'Content-Type': 'application/json'
             },
