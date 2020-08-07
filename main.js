@@ -119,11 +119,11 @@ class WidgetsProcessor {
         sortedClass.forEach((cls) => {
             let widthAcum = this.initX
             let maxHeightRow = 0
+            let clusterColor = this.getRandomColor()
             if (cls.key == -1) {
                 // white color for outliers class
-                const clusterColor = "#f5f6f8"
+                clusterColor = "#f5f6f8"
             } else {
-                let clusterColor = this.getRandomColor()
                 while (clusterColor == prevColor) {
                     clusterColor = this.getRandomColor()
                 }
