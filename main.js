@@ -121,7 +121,7 @@ class WidgetsProcessor {
             let maxHeightRow = 0
             if (cls.key == -1) {
                 // white color for outliers class
-                clusterColor = "#f5f6f8"
+                const clusterColor = "#f5f6f8"
             } else {
                 let clusterColor = this.getRandomColor()
                 while (clusterColor == prevColor) {
