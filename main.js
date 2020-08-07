@@ -10,6 +10,9 @@ miro.onReady(() => {
               if (widgets.length) {
                 const processor = new WidgetsProcessor(widgets)
                 processor.process()
+                miro.board.viewport.setViewportWithAnimation(
+                    processor.getViewport()
+                )
               }
             }
           )
@@ -82,6 +85,15 @@ class WidgetsProcessor {
         })
         this.selectionWidth = this.maxX - this.initX
         this.selectionHeight = this.maxY - this.initY
+    }
+
+    getViewport() {
+        return {
+            x: this.initX,
+            y: this.initY + this.selectionHeight * this.heightBufferMultiplier,
+            width: this.selectionWidth,
+            height: this.selectionHeight,
+        }
     }
 
     process() {
