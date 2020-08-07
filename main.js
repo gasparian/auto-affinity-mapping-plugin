@@ -19,6 +19,14 @@ miro.onReady(() => {
   })
 })
 
+function sortObjectByValueLen(widgetClass) {
+    // descending sort by cluster length
+    return Object.keys(widgetClass)
+               .map((k) => { return { key: k, value: widgetClass[k] } })
+               .sort((a, b) => { return a.value.length > b.value.length ? -1 : 1 })
+    
+}
+
 class WidgetsProcessor {
     constructor(widgets) {
         this.apiUrl = `https://0524b90bfa51.ngrok.io/get_clusters`
@@ -46,7 +54,10 @@ class WidgetsProcessor {
         this.maxY = widgets[0].y
         this.widgetMeanWidth = 0
         this.widgetMeanHeight = 0
-        widgets.forEach(w => {  
+        widgets.forEach(w => {
+            if (!w.plainText.length) {
+                return
+            }
             if (w.x < this.initX) {
                 this.initX = w.x
             }
@@ -108,11 +119,7 @@ class WidgetsProcessor {
     }
 
     updateWidgetsPos(widgetClass) {
-        // descending sort by cluster length
-        const sortedClass = Object.keys(widgetClass)
-            .map((k) => { return { key: k, value: widgetClass[k] } })
-            .sort((a, b) => { return a.value.length > b.value.length ? -1 : 1 })
-
+        const sortedClass = sortObjectByValueLen(widgetClass)
         // calc position and create widgets
         let heightAcum = this.initY + this.selectionHeight * this.heightBufferMultiplier
         let prevColor = null
