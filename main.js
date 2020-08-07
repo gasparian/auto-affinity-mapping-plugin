@@ -91,8 +91,8 @@ class WidgetsProcessor {
         return {
             x: this.initX,
             y: this.initY + this.selectionHeight * this.heightBufferMultiplier,
-            width: this.selectionWidth,
-            height: this.selectionHeight,
+            width: this.selectionWidth * 2,
+            height: this.selectionHeight * 2,
         }
     }
 
