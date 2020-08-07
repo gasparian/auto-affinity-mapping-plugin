@@ -89,8 +89,8 @@ class WidgetsProcessor {
 
     getViewport() {
         return {
-            x: this.initX,
-            y: this.initY + this.selectionHeight * this.heightBufferMultiplier,
+            x: this.initX - this.selectionWidth / 2,
+            y: this.initY + this.selectionHeight * this.heightBufferMultiplier - this.selectionHeight / 2,
             width: this.selectionWidth * 2,
             height: this.selectionHeight * 2,
         }
