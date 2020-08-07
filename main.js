@@ -10,12 +10,12 @@ miro.onReady(() => {
               if (widgets.length) {
                 const processor = new WidgetsProcessor(widgets)
                 processor.process()
-                miro.board.viewport.setViewportWithAnimation(
-                    processor.getViewport()
-                )
+                return processor.getViewport()
               }
-            }
-          )
+              return {}
+            }).then((newViewPort) => {
+                miro.board.viewport.setViewportWithAnimation(newViewPort)
+            })
         }
       },
     }
