@@ -21,7 +21,7 @@ miro.onReady(() => {
 
 class WidgetsProcessor {
     constructor(widgets) {
-        this.apiUrl = `https://d6a4f3bd8a8d.ngrok.io/get_clusters`
+        this.apiUrl = `https://0524b90bfa51.ngrok.io/get_clusters`
 
         // To do: drop redundunt data?
         this.basicColors = [
@@ -119,9 +119,14 @@ class WidgetsProcessor {
         sortedClass.forEach((cls) => {
             let widthAcum = this.initX
             let maxHeightRow = 0
-            let clusterColor = this.getRandomColor()
-            while (clusterColor == prevColor) {
-                clusterColor = this.getRandomColor()
+            if (cls.key == -1) {
+                // white color for outliers class
+                clusterColor = "#f5f6f8"
+            } else {
+                let clusterColor = this.getRandomColor()
+                while (clusterColor == prevColor) {
+                    clusterColor = this.getRandomColor()
+                }
             }
             prevColor = clusterColor
             cls.value.forEach((v) => {
