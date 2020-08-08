@@ -1,4 +1,4 @@
-https://gasparian.github.io/neural-affinity-mapping-plugin/  
+https://gasparian.github.io/neural-affinity-mapping-miro-plugin/  
 
 ### Attempt to build "Neural affinity mapping" plugin  
 
