@@ -1,6 +1,6 @@
 https://gasparian.github.io/neural-affinity-mapping-plugin/  
 
-### Neural affinity mapping  
+### Attempt to build "Neural affinity mapping" plugin  
 
 Miro plugin for widgets tex-based clustering.  
 Encode widgets' text --> apply clustering --> visualize.  
