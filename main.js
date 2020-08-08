@@ -14,7 +14,9 @@ miro.onReady(() => {
               }
               return {}
             }).then((newViewPort) => {
-                miro.board.viewport.setViewportWithAnimation(newViewPort)
+                if (newViewPort) {
+                    miro.board.viewport.setViewportWithAnimation(newViewPort)
+                }
             })
         }
       },
@@ -135,6 +137,7 @@ class WidgetsProcessor {
         // calc position and create widgets
         let heightAcum = this.initY + this.selectionHeight * this.heightBufferMultiplier
         let prevColor = null
+        let newWidgets = []
         sortedClass.forEach((cls) => {
             let widthAcum = this.initX
             let maxHeightRow = 0
@@ -160,18 +163,20 @@ class WidgetsProcessor {
                     maxHeightRow = h
                 }
                 // copy widgets to another place of the current board
-                miro.board.widgets.create({
-                    type: 'sticker', text: this.widgets[v].plainText,
-                    id: v, x: widthAcum, y: heightAcum, 
-                    scale: this.widgets[v].scale,
-                    style:{
-                        stickerBackgroundColor: clusterColor
-                    }
-                })
+                // miro.board.widgets.create()
+                newWidgets.push({
+                        type: 'sticker', text: this.widgets[v].plainText,
+                        id: v, x: widthAcum, y: heightAcum, 
+                        scale: this.widgets[v].scale,
+                        style:{
+                            stickerBackgroundColor: clusterColor
+                        }
+                    })
                 widthAcum = this.increaseWidth(widthAcum, w)
             })
             heightAcum = this.increaseHeight(heightAcum, maxHeightRow)
         })
+        miro.board.widgets.create(newWidgets)
     }
 }
 
