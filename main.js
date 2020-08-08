@@ -34,7 +34,7 @@ function sortObjectByValueLen(widgetClass) {
 
 class WidgetsProcessor {
     constructor(widgets) {
-        this.apiUrl = `https://45dc1915a900.ngrok.io/get_clusters`
+        this.apiUrl = `https://5f851a062592.ngrok.io/get_clusters`
 
         // To do: drop redundunt data?
         this.basicColors = [
