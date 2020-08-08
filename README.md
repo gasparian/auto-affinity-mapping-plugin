@@ -10,10 +10,13 @@ Short recipe:
  - take some non-linear dimension reduction algorithm (tSNE / UMAP);  
  - choose the clustering algorithm (KMeans / DBSCAN);  
  WHILE (you're not satisfied with clustering results)  
+
  DO  
     - get some test data;  
     - test algorithm to optimize clustering parameters on the fly;  
+
  FI  
+ 
  - get real data from the client;  
  - return clusters ids back;  
 
