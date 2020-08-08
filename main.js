@@ -23,25 +23,27 @@ miro.onReady(() => {
     //       }
     //     }
     //   },
-    getWidgetMenuItems: {
-        tooltip: 'neural affinity mapper',
-        svgIcon: icon24,
-        onClick: async () => {
-          const authorized = await miro.isAuthorized()
-          if (authorized) {
-            miro.board.selection.get().then( (widgets) => {
-                if (widgets.length) {
-                    const processor = new WidgetsProcessor(widgets)
-                    processor.process()
-                    return processor.getViewport()
-                }
-                return {}
-                }).then((newViewPort) => {
-                    if (newViewPort) {
-                        miro.board.viewport.setViewportWithAnimation(newViewPort)
+    getWidgetMenuItems: async() => {
+        return {
+            tooltip: 'neural affinity mapper',
+            svgIcon: icon24,
+            onClick: async () => {
+            const authorized = await miro.isAuthorized()
+            if (authorized) {
+                miro.board.selection.get().then( (widgets) => {
+                    if (widgets.length) {
+                        const processor = new WidgetsProcessor(widgets)
+                        processor.process()
+                        return processor.getViewport()
                     }
-                })
-          }
+                    return {}
+                    }).then((newViewPort) => {
+                        if (newViewPort) {
+                            miro.board.viewport.setViewportWithAnimation(newViewPort)
+                        }
+                    })
+            }
+            }
         }
       },
     }
