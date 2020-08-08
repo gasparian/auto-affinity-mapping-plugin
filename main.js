@@ -5,7 +5,7 @@ miro.onReady(() => {
     //   bottomBar: {
     //     title: 'neural affinity mapper',
     //     svgIcon: icon24,
-    //     onClick: () => {
+    //     onClick: async () => {
     //       const authorized = await miro.isAuthorized()
     //       if (authorized) {
     //         miro.board.selection.get().then( (widgets) => {
@@ -26,7 +26,7 @@ miro.onReady(() => {
     getWidgetMenuItems: {
         tooltip: 'neural affinity mapper',
         svgIcon: icon24,
-        onClick: () => {
+        onClick: async () => {
           const authorized = await miro.isAuthorized()
           if (authorized) {
             miro.board.selection.get().then( (widgets) => {
