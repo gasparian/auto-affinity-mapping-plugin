@@ -21,4 +21,9 @@ Short recipe:
  - get real data from the client;  
  - return clusters ids back;  
 
+### Cons  
+ - clustering with oprimization takes too much time...;  
+ - creating too much widgets on the board is not stable;  
+ - need to tune quiality of the clustering ;)  
+
 [Link](https://miro.com/oauth/authorize/?response_type=token&client_id=3074457349195679315&redirect_uri=https://miro.com/app/dashboard/) to authorize the plugin.  
