@@ -5,5 +5,19 @@
 Miro plugin for widgets tex-based clustering.  
 Encode widgets' text --> apply clustering --> visualize.  
 
-Recipe:  
-run `bert-as-service` --> run server with the clustering algoritm --> get text from board selection --> update widgets coordinates.  
+Short recipe:  
+ - take pre-trained BERT;  
+ - take some non-linear dimension reduction algorithm (tSNE / UMAP);  
+ - choose the clustering algorithm (KMeans / DBSCAN);  
+ WHILE (you're not satisfied with clustering results)  
+ DO  
+    - get some test data;  
+    - test algorithm to optimize clustering parameters on the fly;  
+ FI  
+ - get real data from the client;  
+ - return clusters ids back;  
+
+Play with plugin:  
+```
+https://miro.com/oauth/authorize/?response_type=token&client_id=3074457349195679315&redirect_uri=https://miro.com/app/dashboard/
+```  
