@@ -158,9 +158,9 @@ class WidgetsProcessor {
                 }
             }
             // add first stickie that represents the cluster title
-            cls.value.unshift("title")
+            cls.value.unshift(cls.key)
             const firstWidget = this.widgets[Object.keys(this.widgets)[0]]
-            this.widgets["title"] = {
+            this.widgets[cls.key] = {
                 plainText: titles[cls.key],
                 width: firstWidget.width,
                 height: firstWidget.height,
