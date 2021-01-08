@@ -157,7 +157,15 @@ class WidgetsProcessor {
                     clusterColor = this.getRandomColor()
                 }
             }
-            cls.value.unshift(titles[cls.key]) // add first stickie that represents the cluster title
+            // add first stickie that represents the cluster title
+            cls.value.unshift("title")
+            const firstWidget = this.widgets[Object.keys(this.widgets)[0]]
+            this.widgets["title"] = {
+                plainText: titles[cls.key],
+                width: firstWidget.width,
+                height: firstWidget.height,
+                scale: firstWidget.scale
+            }
             prevColor = clusterColor
             cls.value.forEach((v, i) => {
                 // smth similar to pagination inside a cluster
@@ -172,13 +180,13 @@ class WidgetsProcessor {
                 }
                 // copy widgets to another place of the current board
                 newWidgets.push({
-                        type: 'sticker', text: this.widgets[v].plainText,
-                        id: v, x: widthAcum, y: heightAcum, 
-                        scale: this.widgets[v].scale,
-                        style:{
-                            stickerBackgroundColor: clusterColor ? i > 0 : this.serviceColor
-                        }
-                    })
+                    type: 'sticker', text: this.widgets[v].plainText,
+                    id: v, x: widthAcum, y: heightAcum, 
+                    scale: this.widgets[v].scale,
+                    style:{
+                        stickerBackgroundColor: clusterColor ? i > 0 : this.serviceColor
+                    }
+                })
                 widthAcum = this.increaseWidth(widthAcum, w)
             })
             heightAcum = this.increaseHeight(heightAcum, maxHeightRow)
