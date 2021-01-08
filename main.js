@@ -4,7 +4,7 @@ miro.onReady(() => {
     extensionPoints: {
         getWidgetMenuItems: async() => {
             return {
-                tooltip: 'neural affinity mapper',
+                tooltip: 'automated affinity mapper',
                 svgIcon: icon24,
                 onClick: async () => {
                 const authorized = await miro.isAuthorized()
@@ -32,16 +32,17 @@ miro.onReady(() => {
 function sortObjectByValueLen(widgetClass) {
     // descending sort by cluster length
     return Object.keys(widgetClass)
-               .map((k) => { return { key: k, value: widgetClass[k] } })
-               .sort((a, b) => { return a.value.length > b.value.length ? -1 : 1 })
+                 .map((k) => { return { key: k, value: widgetClass[k] } })
+                 .sort((a, b) => { return a.value.length > b.value.length ? -1 : 1 })
     
 }
 
 class WidgetsProcessor {
     constructor(widgets) {
-        this.apiUrl = `https://5f851a062592.ngrok.io/get_clusters`
+        this.apiUrl = `https://cd1a7b13199f.ngrok.io/get-clusters`
 
-        // To do: drop redundunt data?
+        // TO DO: drop redundant data?
+        this.serviceColor = '#f5f6f8'
         this.basicColors = [
             '#fff9b1', // Default color
             '#f5d128',
@@ -103,15 +104,6 @@ class WidgetsProcessor {
         }
     }
 
-    process() {
-        this.getWidgetClass().then((result) => {
-            const data = result ? JSON.parse(result) : {}
-            if (Object.keys(data).length) {
-                this.updateWidgetsPos(data)
-            }
-        })
-    }
-
     async getWidgetClass() {
         let resp = await fetch(this.apiUrl, {
             method: "POST",
@@ -122,6 +114,15 @@ class WidgetsProcessor {
             body: JSON.stringify(this.widgets)
         })
         return resp.text()
+    }
+
+    process() {
+        this.getWidgetClass().then((result) => {
+            const data = result ? JSON.parse(result) : {}
+            if (Object.keys(data).length) {
+                this.updateWidgetsPos(data)
+            }
+        })
     }
 
     increaseHeight(heightAcum, maxHeightRow) {
@@ -137,26 +138,27 @@ class WidgetsProcessor {
         return this.basicColors[idx]
     }
 
-    updateWidgetsPos(widgetClass) {
-        const sortedClass = sortObjectByValueLen(widgetClass)
+    updateWidgetsPos(responseData) { 
+        const {titles, labels} = responseData 
+        const sortedClasses = sortObjectByValueLen(labels)
         // calc position and create widgets
         let heightAcum = this.initY + this.selectionHeight * this.heightBufferMultiplier
         let prevColor = null
         let newWidgets = []
-        sortedClass.forEach((cls) => {
+        sortedClasses.forEach((cls) => {
             let widthAcum = this.initX
             let maxHeightRow = 0
             let clusterColor = this.getRandomColor()
             if (cls.key == -1) {
                 // white color for outliers class
-                clusterColor = "#f5f6f8"
+                clusterColor = this.serviceColor
             } else {
                 while (clusterColor == prevColor) {
                     clusterColor = this.getRandomColor()
                 }
             }
             prevColor = clusterColor
-            cls.value.forEach((v) => {
+            cls.value.forEach((v, i) => {
                 // smth similar to pagination inside a cluster
                 if ( widthAcum > (this.maxX + this.widgets[v].width / 2) ) {
                     widthAcum = this.initX
@@ -173,7 +175,7 @@ class WidgetsProcessor {
                         id: v, x: widthAcum, y: heightAcum, 
                         scale: this.widgets[v].scale,
                         style:{
-                            stickerBackgroundColor: clusterColor
+                            stickerBackgroundColor: clusterColor ? i > 0 : this.serviceColor
                         }
                     })
                 widthAcum = this.increaseWidth(widthAcum, w)
