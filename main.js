@@ -58,7 +58,7 @@ class WidgetsProcessor {
         ]
         this.widgets = {}
         this.widgetsBufferCoef = 0.1
-        this.heightBufferMultiplier = 2.5
+        this.heightBufferMultiplier = 2
         this.initX = widgets[0].x
         this.initY = widgets[0].y
         this.maxX = widgets[0].x
@@ -98,7 +98,7 @@ class WidgetsProcessor {
     getViewport() {
         return {
             x: this.initX - this.selectionWidth / 2,
-            y: this.initY + this.selectionHeight * this.heightBufferMultiplier - this.selectionHeight / 2,
+            y: this.initY + this.selectionHeight * this.heightBufferMultiplier,
             width: this.selectionWidth * 2,
             height: this.selectionHeight * 2,
         }
