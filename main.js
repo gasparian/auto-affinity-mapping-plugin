@@ -167,7 +167,7 @@ class WidgetsProcessor {
                 scale: firstWidget.scale
             }
             prevColor = clusterColor
-            cls.value.forEach((v, i) => {
+            cls.value.forEach((v) => {
                 // smth similar to pagination inside a cluster
                 if ( widthAcum > (this.maxX + this.widgets[v].width / 2) ) {
                     widthAcum = this.initX
@@ -184,7 +184,7 @@ class WidgetsProcessor {
                     id: v, x: widthAcum, y: heightAcum, 
                     scale: this.widgets[v].scale,
                     style:{
-                        stickerBackgroundColor: i > 0 ? clusterColor : this.serviceColor
+                        stickerBackgroundColor: cls.key == -1 ? this.serviceColor : clusterColor
                     }
                 })
                 widthAcum = this.increaseWidth(widthAcum, w)
