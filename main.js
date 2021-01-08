@@ -179,6 +179,7 @@ class WidgetsProcessor {
                     maxHeightRow = h
                 }
                 // copy widgets to another place of the current board
+                console.log(cls.key == -1 ? this.serviceColor : clusterColor)
                 newWidgets.push({
                     type: 'sticker', text: this.widgets[v].plainText,
                     id: v, x: widthAcum, y: heightAcum, 
