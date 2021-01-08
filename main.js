@@ -33,7 +33,7 @@ function sortObjectByValueLen(widgetClass) {
     // descending sort by cluster length
     return Object.keys(widgetClass)
                  .map((k) => { return { key: k, value: widgetClass[k] } })
-                 .sort((a, b) => { return a.value.length > b.value.length ? -1 : 1 })
+                 .sort((a, b) => { return (a.value.length > b.value.length || a.key == -1) ? -1 : 1 })
     
 }
 
@@ -184,7 +184,7 @@ class WidgetsProcessor {
                     id: v, x: widthAcum, y: heightAcum, 
                     scale: this.widgets[v].scale,
                     style:{
-                        stickerBackgroundColor: clusterColor ? i > 0 : this.serviceColor
+                        stickerBackgroundColor: i > 0 ? clusterColor : this.serviceColor
                     }
                 })
                 widthAcum = this.increaseWidth(widthAcum, w)
