@@ -157,6 +157,7 @@ class WidgetsProcessor {
                     clusterColor = this.getRandomColor()
                 }
             }
+            cls.value.unshift(titles[cls.key]) // add first stickie that represents the cluster title
             prevColor = clusterColor
             cls.value.forEach((v, i) => {
                 // smth similar to pagination inside a cluster
