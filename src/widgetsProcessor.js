@@ -90,7 +90,7 @@ export default class WidgetsProcessor {
     process(widgets) {
         this.viewportData = {}
         const processedWidgets = this.preprocessWidgets(widgets)
-        this.getClusters(widgets).then((result) => {
+        this.getClusters(processedWidgets.widgets).then((result) => {
             const data = result ? JSON.parse(result) : {}
             if (Object.keys(data).length) {
                 this.updateWidgetsPos(processedWidgets, data)
