@@ -71,7 +71,7 @@ export default class WidgetsProcessor {
         return processedWidgets
     }
 
-    get viewportData() {
+    get lastViewportData() {
         return this.viewportData
     }
 
@@ -88,6 +88,7 @@ export default class WidgetsProcessor {
     }
 
     process(widgets) {
+        this.viewportData = {}
         const processedWidgets = this.preprocessWidgets(widgets)
         this.getClusters(widgets).then((result) => {
             const data = result ? JSON.parse(result) : {}

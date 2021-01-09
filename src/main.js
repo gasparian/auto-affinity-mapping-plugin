@@ -18,7 +18,7 @@ miro.onReady(() => {
                             miro.board.selection.get().then((widgets) => {
                                 if (widgets.length > 2) {
                                     widgetsProcessor.process(widgets)
-                                    return widgetsProcessor.viewportData
+                                    return widgetsProcessor.lastViewportData
                                 }
                                 return {}
                             }).then((viewportData) => {
