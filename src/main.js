@@ -1,4 +1,4 @@
-import WidgetsProcessor from "./widgetsProcessor.js"
+import WidgetsProcessor from "widgetsProcessor"
 
 const widgetsProcessor = new WidgetsProcessor(
     apiUrl=`https://152d4182d280.ngrok.io/get-clusters/tfidf`
