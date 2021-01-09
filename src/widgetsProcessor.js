@@ -62,8 +62,8 @@ export default class WidgetsProcessor {
         processedWidgets.selectionHeight = processedWidgets.maxY - processedWidgets.initY
 
         this.viewPortData = {
-            x: initX - processedWidgets.selectionWidth / 2,
-            y: initY + processedWidgets.selectionHeight * this.heightBufferMultiplier,
+            x: processedWidgets.initX - processedWidgets.selectionWidth / 2,
+            y: processedWidgets.initY + processedWidgets.selectionHeight * this.heightBufferMultiplier,
             width: processedWidgets.selectionWidth * 2,
             height: processedWidgets.selectionHeight * 2,
         }
