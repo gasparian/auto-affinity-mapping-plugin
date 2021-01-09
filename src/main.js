@@ -2,6 +2,7 @@ import WidgetsProcessor from "./widgetsProcessor.js"
 
 const widgetsProcessor = new WidgetsProcessor(
     `https://152d4182d280.ngrok.io/get-clusters/tfidf`
+    // `https://152d4182d280.ngrok.io/get-clusters/fasttext`
 )
 
 miro.onReady(() => {
@@ -16,7 +17,7 @@ miro.onReady(() => {
                     const authorized = await miro.isAuthorized()
                         if (authorized) {
                             miro.board.selection.get().then((widgets) => {
-                                if (widgets.length > 2) {
+                                if (widgets.length > 4) {
                                     widgetsProcessor.process(widgets)
                                     return widgetsProcessor.lastViewportData
                                 }
