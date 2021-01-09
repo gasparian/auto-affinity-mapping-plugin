@@ -15,7 +15,7 @@ miro.onReady(() => {
                     onClick: async () => {
                     const authorized = await miro.isAuthorized()
                         if (authorized) {
-                            miro.board.selection.get().then( (widgets) => {
+                            miro.board.selection.get().then((widgets) => {
                                 if (widgets.length > 2) {
                                     widgetsProcessor.process(widgets)
                                     return widgetsProcessor.getViewportData()
