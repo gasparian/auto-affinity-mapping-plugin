@@ -23,7 +23,7 @@ export default class WidgetsProcessor {
     }
 
     preprocessWidgets(widgets) {
-        processedWidgets = {
+        const processedWidgets = {
             initX: widgets[0].x,
             initY: widgets[0].y,
             maxX: widgets[0].x,
