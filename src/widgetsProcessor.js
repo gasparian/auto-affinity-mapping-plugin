@@ -133,7 +133,7 @@ export default class WidgetsProcessor {
             // add first stickie that represents the cluster title
             cls.value.unshift(cls.key)
             const firstWidget = processedWidgets.widgets[Object.keys(processedWidgets.widgets)[0]]
-            this.widgets[cls.key] = {
+            processedWidgets.widgets[cls.key] = {
                 plainText: titles[cls.key],
                 width: firstWidget.width,
                 height: firstWidget.height,
