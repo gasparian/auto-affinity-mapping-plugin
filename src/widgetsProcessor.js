@@ -19,7 +19,7 @@ export default class WidgetsProcessor {
         ]
         this.widgetsBufferCoef = 0.1
         this.heightBufferMultiplier = 2
-        this.viewPortData = {}
+        this.viewportData = {}
     }
 
     preprocessWidgets(widgets) {
@@ -61,7 +61,7 @@ export default class WidgetsProcessor {
         processedWidgets.selectionWidth = processedWidgets.maxX - processedWidgets.initX
         processedWidgets.selectionHeight = processedWidgets.maxY - processedWidgets.initY
 
-        this.viewPortData = {
+        this.viewportData = {
             x: processedWidgets.initX - processedWidgets.selectionWidth / 2,
             y: processedWidgets.initY + processedWidgets.selectionHeight * this.heightBufferMultiplier,
             width: processedWidgets.selectionWidth * 2,
@@ -71,8 +71,8 @@ export default class WidgetsProcessor {
         return processedWidgets
     }
 
-    get getViewportData() {
-        return this.viewPortData
+    get viewportData() {
+        return this.viewportData
     }
 
     async getClusters(widgets) {
