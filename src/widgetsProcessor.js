@@ -1,4 +1,4 @@
-import {sortObjectByValueLen} from "helpers"
+import {sortObjectByValueLen} from "./helpers"
 
 export default class WidgetsProcessor {
     constructor(apiUrl) {
