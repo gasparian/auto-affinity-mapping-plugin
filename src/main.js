@@ -1,8 +1,10 @@
 import WidgetsProcessor from "./widgetsProcessor.js"
 
+const serviceUrl = `https://2cbe5785b8fc.ngrok.io`
+
 const widgetsProcessor = new WidgetsProcessor(
-    `https://6604bd2f2079.ngrok.io/get-clusters/tfidf`
-    // `https://8594f562f81e.ngrok.io/get-clusters/fasttext`
+    `${serviceUrl}/get-clusters/tfidf`
+    // `${serviceUrl}/get-clusters/fasttext`
 )
 
 miro.onReady(() => {

@@ -91,9 +91,11 @@ export default class WidgetsProcessor {
         this.viewportData = {}
         const processedWidgets = this.preprocessWidgets(widgets)
         this.getClusters(processedWidgets.widgets).then((result) => {
-            const data = result ? JSON.parse(result) : {}
-            if (Object.keys(data).length) {
-                this.updateWidgetsPos(processedWidgets, data)
+            const response = result ? JSON.parse(result) : {}
+            if (Object.keys(response).length && response["status"] == "success") {
+                this.updateWidgetsPos(processedWidgets, response["result"])
+            } else if (response["status"] == "failed") {
+                console.error(response["result"])
             }
         })
     }
@@ -130,7 +132,7 @@ export default class WidgetsProcessor {
                     clusterColor = this.getRandomColor()
                 }
             }
-            // add first stickie that represents the cluster title
+            // add first stickie which represents the cluster title
             cls.value.unshift(cls.key)
             const firstWidget = processedWidgets.widgets[Object.keys(processedWidgets.widgets)[0]]
             processedWidgets.widgets[cls.key] = {
