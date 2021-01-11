@@ -1,7 +1,7 @@
 import WidgetsProcessor from "./widgetsProcessor.js"
 
 const widgetsProcessor = new WidgetsProcessor(
-    `https://8594f562f81e.ngrok.io/get-clusters/tfidf`
+    `https://6604bd2f2079.ngrok.io/get-clusters/tfidf`
     // `https://8594f562f81e.ngrok.io/get-clusters/fasttext`
 )
 
