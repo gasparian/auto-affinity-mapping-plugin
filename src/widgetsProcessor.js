@@ -1,8 +1,9 @@
 import {sortObjectByValueLen} from "./helpers.js"
 
 export default class WidgetsProcessor {
-    constructor(apiUrl) {
-        this.apiUrl = apiUrl
+    constructor(uri) {
+        this.uri = uri 
+        this.batchSize = 40
         this.serviceColor = '#f5f6f8'
         this.basicColors = [
             '#fff9b1', // Default color
@@ -76,7 +77,7 @@ export default class WidgetsProcessor {
     }
 
     async getClusters(widgets) {
-        let resp = await fetch(this.apiUrl, {
+        let resp = await fetch(this.uri, {
             method: "POST",
             cache: 'no-cache',
             headers: {
@@ -90,7 +91,10 @@ export default class WidgetsProcessor {
     process(widgets) {
         this.viewportData = {}
         const processedWidgets = this.preprocessWidgets(widgets)
-        this.getClusters(processedWidgets.widgets).then((result) => {
+        const widgetsContent = Object.fromEntries(
+            Object.entries(processedWidgets.widgets)
+            .map(e => [e[0],e[1].plainText]))
+        this.getClusters(widgetsContent).then((result) => {
             const response = result ? JSON.parse(result) : {}
             if (Object.keys(response).length && response["status"] == "success") {
                 this.updateWidgetsPos(processedWidgets, response["result"])
@@ -163,6 +167,10 @@ export default class WidgetsProcessor {
                     }
                 })
                 widthAcum = this.increaseWidth(widthAcum, w)
+                if (newWidgets.length == this.batchSize) {
+                    miro.board.widgets.create(newWidgets)
+                    newWidgets = []
+                }
             })
             heightAcum = this.increaseHeight(heightAcum, maxHeightRow)
         })
