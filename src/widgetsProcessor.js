@@ -3,7 +3,6 @@ import {sortObjectByValueLen} from "./helpers.js"
 export default class WidgetsProcessor {
     constructor(uri) {
         this.uri = uri 
-        this.batchSize = 30
         this.serviceColor = '#f5f6f8'
         this.basicColors = [
             '#fff9b1', // Default color
@@ -167,10 +166,6 @@ export default class WidgetsProcessor {
                     }
                 })
                 widthAcum = this.increaseWidth(widthAcum, w)
-                if (newWidgets.length == this.batchSize) {
-                    miro.board.widgets.create(newWidgets)
-                    newWidgets = []
-                }
             })
             heightAcum = this.increaseHeight(heightAcum, maxHeightRow)
         })
