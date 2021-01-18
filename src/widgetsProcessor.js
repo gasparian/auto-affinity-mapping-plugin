@@ -3,7 +3,7 @@ import {sortObjectByValueLen} from "./helpers.js"
 export default class WidgetsProcessor {
     constructor(uri) {
         this.uri = uri 
-        this.batchSize = 40
+        this.batchSize = 30
         this.serviceColor = '#f5f6f8'
         this.basicColors = [
             '#fff9b1', // Default color
