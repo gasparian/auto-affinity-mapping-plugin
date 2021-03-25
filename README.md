@@ -10,5 +10,5 @@ Server part: https://github.com/gasparian/short-texts-clustering
 
 ### TO DO  
  - send only widgets text content to server;  
- - smth wrong happing with transactions - may be create stickies in batches?;  
- - change default icon later;  
+ - smth wrong happening with transactions - may be create stickies in batches? (seems it doesn't work);  
+ - change the default icon later;  
