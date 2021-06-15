@@ -95,7 +95,7 @@ export default class WidgetsProcessor {
             .map(e => [e[0],e[1].plainText]))
         this.getClusters(widgetsContent).then((resp) => {
             const responseText = resp.text()
-            const result = responseText ? JSON.parse(responseText) : {}
+            const result = responseText ? JSON.parse(JSON.stringify(responseText)) : {}
             if (Object.keys(result).length && resp.ok) {
                 this.updateWidgetsPos(processedWidgets, result)
             } else {
