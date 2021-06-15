@@ -84,7 +84,8 @@ export default class WidgetsProcessor {
             },
             body: JSON.stringify(widgets)
         })
-        return [resp.text(), resp.ok]
+        // return [resp.text(), resp.ok]
+        return resp.text()
     }
 
     process(widgets) {
