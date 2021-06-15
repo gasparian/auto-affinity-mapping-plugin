@@ -84,9 +84,7 @@ export default class WidgetsProcessor {
             },
             body: JSON.stringify(widgets)
         })
-        const text = resp.text()
-        const ok = resp.ok
-        return [text, ok]
+        return [resp.text(), resp.ok]
     }
 
     process(widgets) {
@@ -96,9 +94,11 @@ export default class WidgetsProcessor {
             Object.entries(processedWidgets.widgets)
             .map(e => [e[0],e[1].plainText]))
         this.getClusters(widgetsContent).then((resp) => {
-               console.log(resp)
-//             const [respText, respOk] = resp
-//             console.log(respText)
+            const [respText, respOk] = resp
+            console.log(respOk)
+            respText.then((text) => {
+                console.log(text)
+            })
 //             const result = respText ? JSON.parse(respText) : {}
 //             if (Object.keys(result).length && resp.ok) {
 //                 this.updateWidgetsPos(processedWidgets, result)
