@@ -96,14 +96,14 @@ export default class WidgetsProcessor {
         this.getClusters(widgetsContent).then((resp) => {
             const [respText, respOk] = resp
             respText.then((text) => {
-                console.log(text, respOk)
+                const result = text ? JSON.parse(text) : {}
+                if (Object.keys(result).length && respOk) {
+                    this.updateWidgetsPos(processedWidgets, result)
+                } else {
+                    console.error(result)
+                }
             })
-//             const result = respText ? JSON.parse(respText) : {}
-//             if (Object.keys(result).length && resp.ok) {
-//                 this.updateWidgetsPos(processedWidgets, result)
-//             } else {
-//                 console.error(result)
-//             }
+
         })
     }
 
