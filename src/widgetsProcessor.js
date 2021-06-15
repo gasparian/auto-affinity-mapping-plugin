@@ -95,9 +95,8 @@ export default class WidgetsProcessor {
             .map(e => [e[0],e[1].plainText]))
         this.getClusters(widgetsContent).then((resp) => {
             const [respText, respOk] = resp
-            console.log(respOk)
             respText.then((text) => {
-                console.log(text)
+                console.log(text, respOk)
             })
 //             const result = respText ? JSON.parse(respText) : {}
 //             if (Object.keys(result).length && resp.ok) {
