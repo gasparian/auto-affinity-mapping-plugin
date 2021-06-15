@@ -1,6 +1,6 @@
 import WidgetsProcessor from "./widgetsProcessor.js"
 
-const serviceUrl = `https://c1afc5a44ca1.ngrok.io`
+const serviceUrl = `https://32beb9abc0d8.ngrok.io`
 
 const widgetsProcessor = new WidgetsProcessor(
     // `${serviceUrl}/get-clusters/tfidf`
