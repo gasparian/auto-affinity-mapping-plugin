@@ -1,6 +1,6 @@
 import WidgetsProcessor from "./widgetsProcessor.js"
 
-const serviceUrl = `https://c7ff359f5214.ngrok.io`
+const serviceUrl = `https://9ce89d645845.ngrok.io`
 
 const widgetsProcessor = new WidgetsProcessor(
     `${serviceUrl}/api/v1/predict`
